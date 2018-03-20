@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.xiaoi.jack.dao.UserDao">
+    <insert id="insert" parameterType="com.xiaoi.jack.model.User">
+        insert into clouddb.ysfz_manager_user_info
+        (USER_ID,ENCRYPT_PASSWORD,RANDOM_SALT,USER_NAME,USER_ROLE,E_MAIL,ADD_TIME,ALTER_TIME,USER_STATUS)
+        values
+        (#{userId},#{password},#{salt},#{userName},#{userRole},#{email},#{addTime},#{alterTime},#{userStatus})
+    </insert>
+    <select id="selectByUserId" parameterType="String"  resultType="com.xiaoi.jack.model.User">
+        select * from clouddb.ysfz_manager_user_info where USER_ID=#{userId}
+    </select>
+    <select id="selectByName" parameterType="String"  resultType="com.xiaoi.jack.model.User">
+        select * from clouddb.ysfz_manager_user_info where USER_NAME=#{userName}
+    </select>
+    <select id="selectAll" resultType="com.xiaoi.jack.model.User">
+        select * from clouddb.ysfz_manager_user_info
+    </select>
+    <delete id="delete" parameterType="String">
+        delete from cloudb.ysfz_manager_user_info where USER_ID=#{userId}
+    </delete>
+
+</mapper>
